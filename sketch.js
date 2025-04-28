@@ -10,6 +10,8 @@ function setup() {
 
 function draw() {
   background('#bde0fe'); // 確保背景顏色一致
+  translate(width, 0); // 將畫布的原點移到右上角
+  scale(-1, 1); // 水平翻轉畫布
   image(capture, (width - capture.width) / 2, (height - capture.height) / 2); // 將影像置中
 }
 
