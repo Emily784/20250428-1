@@ -4,13 +4,29 @@ let overlayGraphics;
 function setup() {
   createCanvas(windowWidth, windowHeight); // 全視窗畫布
   background('#bde0fe'); // 設定背景顏色
-  capture = createCapture(VIDEO); // 擷取攝影機影像
-  capture.size(windowWidth * 0.8, windowHeight * 0.8); // 設定影像大小為視窗的 80%
-  capture.hide(); // 隱藏原始的 HTML 視訊元素
+
+  // 嘗試擷取攝影機影像
+  try {
+    capture = createCapture(VIDEO, () => {
+      console.log('攝影機已啟動');
+    });
+    capture.size(windowWidth * 0.8, windowHeight * 0.8); // 設定影像大小為視窗的 80%
+    capture.hide(); // 隱藏原始的 HTML 視訊元素
+  } catch (error) {
+    console.error('無法存取攝影機:', error);
+  }
 }
 
 function draw() {
   background('#bde0fe'); // 確保背景顏色一致
+
+  if (!capture || capture.width === 0 || capture.height === 0) {
+    fill(255, 0, 0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text('無法顯示攝影機畫面', width / 2, height / 2);
+    return; // 停止繪製其餘內容
+  }
 
   // 如果 overlayGraphics 尚未初始化，且 capture 的寬高已正確設定
   if (!overlayGraphics && capture.width > 0 && capture.height > 0) {
