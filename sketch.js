@@ -10,10 +10,10 @@ function setup() {
 
   // 建立與視訊畫面相同大小的 Graphics
   overlayGraphics = createGraphics(capture.width, capture.height);
-  //overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
+  overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
   overlayGraphics.textSize(32);
   overlayGraphics.textAlign(CENTER, CENTER);
-  overlayGraphics.text('Overlay Text', overlayGraphics.width / 2, overlayGraphics.height / 2); // 在中間顯示文字
+  overlayGraphics.text('這是我的影像', overlayGraphics.width / 2, overlayGraphics.height / 2); // 在中間顯示文字
 }
 
 function draw() {
