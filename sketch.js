@@ -18,7 +18,7 @@ function setup() {
       let colorValue = map(x + y, 0, overlayGraphics.width + overlayGraphics.height, 0, 255); // 根據位置計算顏色
       overlayGraphics.fill(colorValue, 255 - colorValue, colorValue / 2); // 設定顏色
       overlayGraphics.noStroke();
-      overlayGraphics.ellipse(x, y, 72, 72); // 繪製圓形
+      overlayGraphics.ellipse(x, y, 15, 15); // 繪製圓形，寬高為 15
     }
   }
 }
@@ -47,7 +47,7 @@ function windowResized() {
       let colorValue = map(x + y, 0, overlayGraphics.width + overlayGraphics.height, 0, 255); // 根據位置計算顏色
       overlayGraphics.fill(colorValue, 255 - colorValue, colorValue / 2); // 設定顏色
       overlayGraphics.noStroke();
-      overlayGraphics.ellipse(x, y, 72, 72); // 繪製圓形
+      overlayGraphics.ellipse(x, y, 15, 15); // 繪製圓形，寬高為 15
     }
   }
 }
