@@ -34,10 +34,15 @@ function draw() {
     overlayGraphics.background(0); // 設定背景為黑色
 
     // 繪製圓形圖案
+    capture.loadPixels(); // 載入 capture 的像素資料
     for (let x = 10; x < overlayGraphics.width; x += 20) {
       for (let y = 10; y < overlayGraphics.height; y += 20) {
-        let colorValue = map(x + y, 0, overlayGraphics.width + overlayGraphics.height, 0, 255); // 根據位置計算顏色
-        overlayGraphics.fill(colorValue, 255 - colorValue, colorValue / 2); // 設定顏色
+        let index = (y * capture.width + x) * 4; // 計算像素索引
+        let r = capture.pixels[index]; // 紅色值
+        let g = capture.pixels[index + 1]; // 綠色值
+        let b = capture.pixels[index + 2]; // 藍色值
+        let gray = (r + g + b) / 3; // 計算灰階值
+        overlayGraphics.fill(gray); // 設定灰階顏色
         overlayGraphics.noStroke();
         overlayGraphics.ellipse(x, y, 15, 15); // 繪製圓形，寬高為 15
       }
@@ -63,10 +68,15 @@ function windowResized() {
   if (overlayGraphics) {
     overlayGraphics.resizeCanvas(capture.width, capture.height);
     overlayGraphics.background(0); // 設定背景為黑色
+    capture.loadPixels(); // 載入 capture 的像素資料
     for (let x = 10; x < overlayGraphics.width; x += 20) {
       for (let y = 10; y < overlayGraphics.height; y += 20) {
-        let colorValue = map(x + y, 0, overlayGraphics.width + overlayGraphics.height, 0, 255); // 根據位置計算顏色
-        overlayGraphics.fill(colorValue, 255 - colorValue, colorValue / 2); // 設定顏色
+        let index = (y * capture.width + x) * 4; // 計算像素索引
+        let r = capture.pixels[index]; // 紅色值
+        let g = capture.pixels[index + 1]; // 綠色值
+        let b = capture.pixels[index + 2]; // 藍色值
+        let gray = (r + g + b) / 3; // 計算灰階值
+        overlayGraphics.fill(gray); // 設定灰階顏色
         overlayGraphics.noStroke();
         overlayGraphics.ellipse(x, y, 15, 15); // 繪製圓形，寬高為 15
       }
