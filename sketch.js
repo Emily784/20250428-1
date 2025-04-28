@@ -10,10 +10,17 @@ function setup() {
 
   // 建立與視訊畫面相同大小的 Graphics
   overlayGraphics = createGraphics(capture.width, capture.height);
-  overlayGraphics.fill(255, 0, 0, 100); // 半透明紅色
-  overlayGraphics.textSize(32);
-  overlayGraphics.textAlign(CENTER, CENTER);
-  overlayGraphics.text('這是我的影像', overlayGraphics.width / 2, overlayGraphics.height / 2); // 在中間顯示文字
+  overlayGraphics.background(0); // 設定背景為黑色
+
+  // 繪製圓形圖案
+  for (let x = 10; x < overlayGraphics.width; x += 20) {
+    for (let y = 10; y < overlayGraphics.height; y += 20) {
+      let colorValue = map(x + y, 0, overlayGraphics.width + overlayGraphics.height, 0, 255); // 根據位置計算顏色
+      overlayGraphics.fill(colorValue, 255 - colorValue, colorValue / 2); // 設定顏色
+      overlayGraphics.noStroke();
+      overlayGraphics.ellipse(x, y, 72, 72); // 繪製圓形
+    }
+  }
 }
 
 function draw() {
@@ -32,4 +39,15 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight); // 當視窗大小改變時調整畫布
   capture.size(windowWidth * 0.8, windowHeight * 0.8); // 調整影像大小
   overlayGraphics.resizeCanvas(capture.width, capture.height); // 調整 Graphics 大小
+
+  // 重新繪製 Graphics 圖案
+  overlayGraphics.background(0); // 設定背景為黑色
+  for (let x = 10; x < overlayGraphics.width; x += 20) {
+    for (let y = 10; y < overlayGraphics.height; y += 20) {
+      let colorValue = map(x + y, 0, overlayGraphics.width + overlayGraphics.height, 0, 255); // 根據位置計算顏色
+      overlayGraphics.fill(colorValue, 255 - colorValue, colorValue / 2); // 設定顏色
+      overlayGraphics.noStroke();
+      overlayGraphics.ellipse(x, y, 72, 72); // 繪製圓形
+    }
+  }
 }
